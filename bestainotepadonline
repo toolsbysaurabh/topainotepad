@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attractive Notepad Clone</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <div class="app-container">
+        <div class="top-navigation-bar">
+            <div class="nav-group file-actions">
+                <button id="btn-new" title="New File">📄 New</button>
+                <button id="btn-open" title="Open File">📂 Open</button>
+                <button id="btn-save" title="Save File">💾 Save</button>
+                <button id="btn-print" title="Print">🖨️ Print</button>
+            </div>
+            <div class="nav-group file-display-group">
+                <span>File: <span id="top-bar-current-file-name">Untitled.txt</span></span>
+            </div>
+            <div class="nav-group settings-actions">
+                <label for="font-size">Font:</label>
+                <button id="btn-font-decrease" class="font-control-button" title="Decrease Font Size">-</button>
+                <span id="current-font-size">14</span>
+                <button id="btn-font-increase" class="font-control-button" title="Increase Font Size">+</button>
+                <label for="theme-switcher" style="margin-left: 10px;">Theme:</label>
+                <select id="theme-switcher">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div class="toolbar">
+                <button id="btn-undo" title="Undo">↩️ Undo</button>
+                <button id="btn-redo" title="Redo">↪️ Redo</button>
+                <span class="separator">|</span>
+                <button id="btn-cut" title="Cut">✂️ Cut</button>
+                <button id="btn-copy" title="Copy">📋 Copy</button>
+                <button id="btn-paste" title="Paste">📄 Paste</button>
+                <button id="btn-select-all" title="Select All">Select All</button>
+                <span class="separator">|</span>
+                 <button id="btn-toggle-fullscreen" title="Fullscreen">Fullscreen</button>
+            </div>
+            <textarea id="notepad-area" spellcheck="false" placeholder="Start typing here..."></textarea>
+        </main>
+
+        <footer class="status-bar">
+            <span id="word-count">Words: 0</span>
+            <span id="char-count">Characters: 0</span>
+            </footer>
+    </div>
+
+    <input type="file" id="file-input" accept=".txt, .md, .js, .css, .html" style="display: none;">
+
+    <script src="script.js"></script>
+</body>
+</html>
