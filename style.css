@@ -1,0 +1,199 @@
+:root {
+    --bg-primary: #f4f7f9;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e9eef2;
+    --text-primary: #333333;
+    --text-secondary: #555555;
+    --border-color: #d1d9e0;
+    --accent-color: #007bff;
+    --hover-accent-color: #0056b3;
+    /* --sidebar-width: 250px; -- Removed */
+    --top-nav-bar-height: 50px;
+    --toolbar-height: 50px;
+    --statusbar-height: 30px;
+    --base-font-size: 14px;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1e1e1e;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #3a3a3a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-color: #444444;
+    --accent-color: #0090ff;
+    --hover-accent-color: #006bb3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Prevents scrollbars on body if content fits */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column; /* Stack top-nav, main-content, status-bar vertically */
+    width: 95vw;
+    max-width: 1400px;
+    height: 90vh;
+    background-color: var(--bg-secondary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Important for contained layout */
+    border: 1px solid var(--border-color);
+}
+
+/* New Top Navigation Bar */
+.top-navigation-bar {
+    height: var(--top-nav-bar-height);
+    background-color: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribute groups */
+    gap: 15px; /* Gap between groups */
+    flex-shrink: 0;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.nav-group {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Gap within groups */
+}
+
+.top-navigation-bar button,
+.toolbar button { /* Shared style for buttons in top-nav and toolbar */
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center; /* Changed from left */
+    transition: background-color 0.2s;
+    font-size: 0.9em;
+}
+
+.top-navigation-bar button:hover,
+.toolbar button:hover {
+    background-color: var(--hover-accent-color);
+}
+
+/* Specific style for font +/- buttons if needed, inheriting from above */
+.font-control-button {
+    padding: 4px 8px !important; /* Use !important if necessary to override generic button style */
+    min-width: 25px;
+}
+
+.file-display-group span,
+.settings-actions label,
+.settings-actions span {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+
+#theme-switcher, #current-font-size { /* current-font-size is now a span */
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    margin: 0 5px;
+}
+#current-font-size { /* Style for the span displaying font size number */
+    display: inline-block;
+    min-width: 20px;
+    text-align: center;
+    padding: 5px; /* Match select */
+}
+#top-bar-current-file-name {
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1; /* Takes available vertical space */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-secondary);
+    transition: background-color 0.3s;
+    overflow: hidden; /* Allow textarea to scroll, not main-content */
+}
+
+/* Toolbar */
+.toolbar {
+    height: var(--toolbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-tertiary);
+    gap: 8px;
+    flex-shrink: 0; /* Prevent shrinking */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.toolbar .separator {
+    color: var(--border-color);
+    margin: 0 5px;
+}
+
+/* Text Area */
+#notepad-area {
+    flex-grow: 1; /* Takes available space within main-content */
+    border: none;
+    outline: none;
+    padding: 15px;
+    font-size: var(--base-font-size);
+    line-height: 1.6;
+    resize: none;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s, font-size 0.1s;
+    font-family: 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace;
+}
+#notepad-area::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+
+/* Status Bar */
+.status-bar {
+    height: var(--statusbar-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-tertiary);
+    flex-shrink: 0; /* Prevent shrinking */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.status-bar span {
+    margin-right: 15px;
+}
+
+/* Removed sidebar styles */
+/* .sidebar, .sidebar-actions, .sidebar-section, #file-list, etc. are gone */
